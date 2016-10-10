@@ -18,9 +18,9 @@ import uk.ac.standrews.cs.fs.store.general.NameGUIDBinding;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
 import uk.ac.standrews.cs.fs.store.interfaces.INameGUIDMap;
 import uk.ac.standrews.cs.fs.util.Attributes;
-import uk.ac.standrews.cs.fs.util.Diagnostic;
-import uk.ac.standrews.cs.fs.util.Error;
 import uk.ac.standrews.cs.impl.keys.KeyImpl;
+import uk.ac.standrews.cs.utils.Diagnostic;
+import uk.ac.standrews.cs.utils.Error;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

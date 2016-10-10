@@ -5,6 +5,8 @@ package uk.ac.standrews.cs.fs.util;
 
 
 import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributes;
+import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utils.StringUtil;
 
 import java.util.Iterator;
 import java.util.StringTokenizer;

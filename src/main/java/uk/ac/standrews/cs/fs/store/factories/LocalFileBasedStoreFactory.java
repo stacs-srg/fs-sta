@@ -5,7 +5,7 @@ package uk.ac.standrews.cs.fs.store.factories;
 
 import uk.ac.standrews.cs.fs.store.impl.localfilebased.FileStore;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
-import uk.ac.standrews.cs.fs.util.CommandLineArgs;
+import uk.ac.standrews.cs.utils.CommandLineArgs;
 
 import java.io.File;
 import java.util.Map;

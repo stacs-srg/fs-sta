@@ -12,9 +12,9 @@ import uk.ac.standrews.cs.fs.persistence.interfaces.IPIDGenerator;
 import uk.ac.standrews.cs.fs.store.exceptions.StorePutException;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
 import uk.ac.standrews.cs.fs.store.interfaces.IManagedGUIDStore;
-import uk.ac.standrews.cs.fs.util.Diagnostic;
-import uk.ac.standrews.cs.fs.util.Error;
 import uk.ac.standrews.cs.impl.keys.KeyImpl;
+import uk.ac.standrews.cs.utils.Diagnostic;
+import uk.ac.standrews.cs.utils.Error;
 
 import java.io.*;
 import java.util.Iterator;

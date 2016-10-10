@@ -7,8 +7,8 @@ import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.exceptions.GUIDGenerationException;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IPIDGenerator;
-import uk.ac.standrews.cs.fs.util.Error;
 import uk.ac.standrews.cs.impl.SHAKeyFactory;
+import uk.ac.standrews.cs.utils.Error;
 
 public class PIDGenerator implements IPIDGenerator {
 

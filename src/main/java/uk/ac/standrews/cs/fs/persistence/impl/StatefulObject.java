@@ -9,7 +9,7 @@ import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IStatefulObject;
 import uk.ac.standrews.cs.fs.store.impl.localfilebased.ByteData;
-import uk.ac.standrews.cs.fs.util.Error;
+import uk.ac.standrews.cs.utils.Error;
 
 /**
  * Simple persistent object implementation.

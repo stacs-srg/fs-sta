@@ -4,8 +4,8 @@
 package uk.ac.standrews.cs.fs.store.impl.localfilebased;
 
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
-import uk.ac.standrews.cs.fs.util.Diagnostic;
-import uk.ac.standrews.cs.fs.util.Error;
+import uk.ac.standrews.cs.utils.Diagnostic;
+import uk.ac.standrews.cs.utils.Error;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
