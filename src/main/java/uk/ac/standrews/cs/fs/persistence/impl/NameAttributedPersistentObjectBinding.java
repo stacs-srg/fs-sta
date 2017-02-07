@@ -3,11 +3,11 @@
  */
 package uk.ac.standrews.cs.fs.persistence.impl;
 
-import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributedStatefulObject;
+import uk.ac.standrews.cs.fs.interfaces.IFileSystemObject;
 import uk.ac.standrews.cs.fs.persistence.interfaces.INameAttributedPersistentObjectBinding;
 
 /**
- * Implements a binding between a logical name and an IAttributedStatefulObject
+ * Implements a binding between a logical name and an IFileSystemObject
  * A Directory contains a collection of these bindings.
  *
  * @author al
@@ -15,15 +15,15 @@ import uk.ac.standrews.cs.fs.persistence.interfaces.INameAttributedPersistentObj
 public class NameAttributedPersistentObjectBinding implements INameAttributedPersistentObjectBinding {
 
     private String name;
-    private IAttributedStatefulObject obj;
+    private IFileSystemObject obj;
     
     /**
      * Creates a binding between a name and a GUID.
      * 
      * @param name the name
-     * @param obj an IAttributedStatefulObject
+     * @param obj an IFileSystemObject
      */
-    public NameAttributedPersistentObjectBinding(String name, IAttributedStatefulObject obj) {
+    public NameAttributedPersistentObjectBinding(String name, IFileSystemObject obj) {
         this.name = name;
         this.obj = obj;
     }
@@ -38,11 +38,11 @@ public class NameAttributedPersistentObjectBinding implements INameAttributedPer
     }
 
     /**
-     * Gets the IAttributedStatefulObject.
+     * Gets the IFileSystemObject.
      * 
-     * @return the IAttributedStatefulObject
+     * @return the IFileSystemObject
      */
-    public IAttributedStatefulObject getObject() {
+    public IFileSystemObject getObject() {
         return obj;
     }
 

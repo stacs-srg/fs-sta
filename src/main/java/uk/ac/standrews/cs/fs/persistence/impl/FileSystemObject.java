@@ -6,7 +6,8 @@ package uk.ac.standrews.cs.fs.persistence.impl;
 import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.exceptions.AccessFailureException;
-import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributedStatefulObject;
+import uk.ac.standrews.cs.fs.interfaces.IDirectory;
+import uk.ac.standrews.cs.fs.interfaces.IFileSystemObject;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributes;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 
@@ -15,29 +16,32 @@ import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
  * 
  * @author al
  */
-public abstract class AttributedStatefulObject extends StatefulObject implements IAttributedStatefulObject {
+public abstract class FileSystemObject extends StatefulObject implements IFileSystemObject {
 
     IAttributes atts;
+
+    protected String name;
+    private IDirectory parent;
     
     /**
      * @param atts
      */
-    public AttributedStatefulObject(IAttributes atts) {
+    public FileSystemObject(IAttributes atts) {
         super();
         this.atts = atts;
     }
  
-    public AttributedStatefulObject(IGUID guid, IAttributes atts) {
+    public FileSystemObject(IGUID guid, IAttributes atts) {
         super(guid);
         this.atts = atts;
     }
     
-    public AttributedStatefulObject(IData data, IAttributes atts) {
+    public FileSystemObject(IData data, IAttributes atts) {
         super(data);
         this.atts = atts;
     }
     
-    public AttributedStatefulObject(IData data, IPID pid, IGUID guid, IAttributes atts ) {
+    public FileSystemObject(IData data, IPID pid, IGUID guid, IAttributes atts ) {
         super( data, pid, guid );
         this.atts = atts;
     }
@@ -53,4 +57,16 @@ public abstract class AttributedStatefulObject extends StatefulObject implements
     public abstract long getCreationTime() throws AccessFailureException;
 
     public abstract long getModificationTime() throws AccessFailureException;
+
+    public void setParent(IDirectory parent) {
+        this.parent = parent;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

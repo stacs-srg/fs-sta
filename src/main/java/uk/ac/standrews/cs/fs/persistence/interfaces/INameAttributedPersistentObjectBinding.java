@@ -3,7 +3,7 @@
  */
 package uk.ac.standrews.cs.fs.persistence.interfaces;
 
-
+import uk.ac.standrews.cs.fs.interfaces.IFileSystemObject;
 
 /**
  * @author al
@@ -17,9 +17,9 @@ public interface INameAttributedPersistentObjectBinding {
     String getName();
 
     /**
-     * Gets the IAttributedStatefulObject.
+     * Gets the IFileSystemObject.
      * 
-     * @return the IAttributedStatefulObject
+     * @return the IFileSystemObject
      */
-    IAttributedStatefulObject getObject();
+    IFileSystemObject getObject();
 }

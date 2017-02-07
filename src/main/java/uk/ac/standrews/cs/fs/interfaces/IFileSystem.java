@@ -5,7 +5,6 @@ package uk.ac.standrews.cs.fs.interfaces;
 
 import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.fs.exceptions.*;
-import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributedStatefulObject;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 
 import java.net.URI;
@@ -135,5 +134,5 @@ public interface IFileSystem {
      * @param file_path a path expression to a file or directory
      * @return the file or directory associated with that path, or null if the given path expression does not resolve to a file or directory
      */
-    IAttributedStatefulObject resolveObject(URI file_path);
+    IFileSystemObject resolveObject(URI file_path);
 }

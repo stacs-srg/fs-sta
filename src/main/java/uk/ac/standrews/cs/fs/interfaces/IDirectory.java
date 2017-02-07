@@ -5,7 +5,6 @@ package uk.ac.standrews.cs.fs.interfaces;
 
 import uk.ac.standrews.cs.fs.exceptions.BindingAbsentException;
 import uk.ac.standrews.cs.fs.exceptions.BindingPresentException;
-import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributedStatefulObject;
 import uk.ac.standrews.cs.fs.persistence.interfaces.INameAttributedPersistentObjectBinding;
 
 import java.util.Iterator;
@@ -15,7 +14,7 @@ import java.util.Iterator;
  * 
  * @author al, graham
  */
-public interface IDirectory extends IAttributedStatefulObject {
+public interface IDirectory extends IFileSystemObject {
 
     /**
      * Looks up a name in the directory.
@@ -23,7 +22,7 @@ public interface IDirectory extends IAttributedStatefulObject {
      * @param name the name of the item to look up
      * @return the corresponding file or directory, or null if no such entry is found
      */
-    IAttributedStatefulObject get(String name);
+    IFileSystemObject get(String name);
 
     /**
      * Checks whether a name is contained in the directory.

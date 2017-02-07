@@ -3,14 +3,12 @@
  */
 package uk.ac.standrews.cs.fs.interfaces;
 
-import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributedStatefulObject;
-
 /**
  * Abstract file interface.
  * 
  * @author al
  */
-public interface IFile extends IAttributedStatefulObject {
+public interface IFile extends IFileSystemObject {
 
 	// Currently no additional functionality.
 }
