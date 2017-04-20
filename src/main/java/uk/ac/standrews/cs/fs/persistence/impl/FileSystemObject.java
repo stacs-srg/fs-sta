@@ -58,6 +58,10 @@ public abstract class FileSystemObject extends StatefulObject implements IFileSy
 
     public abstract long getModificationTime() throws AccessFailureException;
 
+    public IDirectory getParent() {
+        return this.parent;
+    }
+
     public void setParent(IDirectory parent) {
         this.parent = parent;
     }

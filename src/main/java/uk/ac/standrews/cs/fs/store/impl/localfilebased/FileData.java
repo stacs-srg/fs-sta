@@ -4,7 +4,7 @@
 package uk.ac.standrews.cs.fs.store.impl.localfilebased;
 
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
-import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 import java.io.*;
 import java.util.Arrays;
@@ -37,9 +37,9 @@ public class FileData implements IData {
         try {
             new FileInputStream(theFile).read(bytes);
         } catch (FileNotFoundException e) {
-            Error.exceptionError("Cannot find file: " + theFile.getName(), e);
+            ErrorHandling.exceptionError(e, "Cannot find file: " + theFile.getName(), e);
         } catch (IOException e) {
-            Error.exceptionError("IO error: " + theFile.getName(),e);
+            ErrorHandling.exceptionError(e, "IO error: " + theFile.getName(),e);
         }
         return bytes;
     }

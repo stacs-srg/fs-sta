@@ -4,8 +4,8 @@
 package uk.ac.standrews.cs.fs.store.impl.localfilebased;
 
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
-import uk.ac.standrews.cs.utils.Diagnostic;
-import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utilities.archive.Diagnostic;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class InputStreamData implements IData {
                 bytes_read += read;
             } while (bytes_read != expected_byte_count && available != 0); // TODO Al - need to protect against erroneous clients
         }
-        catch (IOException e) { Error.exceptionError( "I/O error during stream read",e ); }
+        catch (IOException e) { ErrorHandling.exceptionError(e, "I/O error during stream read",e ); }
         
         Diagnostic.trace( "Total read in: " + bytes_read + " bytes", Diagnostic.RUN );
     }

@@ -13,8 +13,8 @@ import uk.ac.standrews.cs.fs.store.exceptions.StorePutException;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
 import uk.ac.standrews.cs.fs.store.interfaces.IManagedGUIDStore;
 import uk.ac.standrews.cs.impl.keys.KeyImpl;
-import uk.ac.standrews.cs.utils.Diagnostic;
-import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utilities.archive.Diagnostic;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 import java.io.*;
 import java.util.Iterator;
@@ -76,8 +76,8 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
             return null;  // Non-existent PID.
         }
         
-        if (theFile.isDirectory()) Error.hardError( "File is system directory: " + filename );
-        Error.hardError( "Encountered an object that is neither file nor directory: " + filename );
+        if (theFile.isDirectory()) ErrorHandling.hardError( "File is system directory: " + filename );
+        ErrorHandling.hardError( "Encountered an object that is neither file nor directory: " + filename );
 
         return null;
     }
@@ -120,14 +120,14 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         	IData existing_data = get(pid);
         	
         	if (data.equals(existing_data)) Diagnostic.trace("file already exists: " + filename + ", returning existing PID", Diagnostic.RUN);
-        	else                            Error.hardError("file for PID " + pid + " already exists, but with different data");
+        	else                            ErrorHandling.hardError("file for PID " + pid + " already exists, but with different data");
         }
         else {
         	
         	// The PID derived from the data does not already exist in the store.
 
         	try {
-		        if (! theFile.createNewFile()) Error.hardError("file already exists despite having checked that it doesn't");          
+		        if (! theFile.createNewFile()) ErrorHandling.hardError("file already exists despite having checked that it doesn't");          
 		        
 		        FileOutputStream output_stream = new FileOutputStream(theFile);
 				output_stream.write(bytes);
@@ -159,7 +159,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         }
         
         if (!latest_PID_file.isFile() ) {
-            Error.hardError( "Latest PID file is not a file: " + latest_PID_file_name );
+            ErrorHandling.hardError( "Latest PID file is not a file: " + latest_PID_file_name );
             return null;
         }
         
@@ -169,11 +169,11 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
             String pid_rep = br.readLine();
             return new KeyImpl(pid_rep);
         } catch (FileNotFoundException e) {
-            Error.exceptionError( "Cannot open file: " + latest_PID_file_name, e );
+            ErrorHandling.exceptionError(e, "Cannot open file: " + latest_PID_file_name, e );
         } catch (IOException e) {
-            Error.exceptionError( "IO exception reading from stream from: " + latest_PID_file_name, e );
+            ErrorHandling.exceptionError(e, "IO exception reading from stream from: " + latest_PID_file_name, e );
         } catch (GUIDGenerationException e) {
-            Error.exceptionError( "GUIDGeneration exception on file: " + latest_PID_file_name, e );
+            ErrorHandling.exceptionError(e, "GUIDGeneration exception on file: " + latest_PID_file_name, e );
         }
 
         return null;
@@ -186,7 +186,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         // the file we are opening is an index file with the name of GUID in the guid_to_pid_directory
         File guid_file = new File(guid_file_name);
         
-        if (guid_file.isDirectory()) Error.hardError("GUID file is a directory: " + guid_file_name);
+        if (guid_file.isDirectory()) ErrorHandling.hardError("GUID file is a directory: " + guid_file_name);
 
         if (guid_file.isFile()) {     // if it doesn't exist return -1
             try{
@@ -195,9 +195,9 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
                 String pid_rep = br.readLine();
                 time=Long.parseLong(pid_rep);
                 return time;
-            }catch (FileNotFoundException e){Error.exceptionError("Cannot open file: "+guid_file_name,e);}
-            catch (IOException e){Error.exceptionError( "IO exception reading from stream from: "+guid_file_name,e);}
-            catch (NumberFormatException e){Error.exceptionError( "Date field in GUID file: "+guid_file_name+" was not a valid data value",e);}
+            }catch (FileNotFoundException e){ErrorHandling.exceptionError(e,"Cannot open file: "+guid_file_name,e);}
+            catch (IOException e){ErrorHandling.exceptionError(e, "IO exception reading from stream from: "+guid_file_name,e);}
+            catch (NumberFormatException e){ErrorHandling.exceptionError(e, "Date field in GUID file: "+guid_file_name+" was not a valid data value",e);}
         }
         return time;
     }
@@ -231,16 +231,16 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         // the file we are opening is an index file with the name of GUID in the guid_to_pid_directory
         File guid_file = new File(guid_file_name);
         
-        if (guid_file.isDirectory()) Error.hardError("GUID file is a directory: " + guid_file_name);
+        if (guid_file.isDirectory()) ErrorHandling.hardError("GUID file is a directory: " + guid_file_name);
 
         if (! guid_file.isFile()) {		// if it doesn't exist create it
 
             Diagnostic.trace("GUID file doesn't exist - creating it: " + guid_file_name, Diagnostic.RUN);
             try {
-                if (! guid_file.createNewFile()) Error.hardError("cannot create GUID file: " + guid_file_name);
+                if (! guid_file.createNewFile()) ErrorHandling.hardError("cannot create GUID file: " + guid_file_name);
                 created=true;
             }
-            catch (IOException e1) { Error.hardExceptionError("cannot create GUID file: " + guid_file_name, e1); }
+            catch (IOException e1) { ErrorHandling.hardExceptionError(e1, "cannot create GUID file: " + guid_file_name, e1); }
         }
     
         // we get to here have the index file ready to add stuff
@@ -256,7 +256,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
             fw.write( "\n" );
             fw.close();
         }
-        catch (IOException e) { Error.exceptionError("cannot create FileWriter for GUID file: " + guid_file_name, e); }
+        catch (IOException e) { ErrorHandling.exceptionError(e, "cannot create FileWriter for GUID file: " + guid_file_name, e); }
         
         // next, save the latest pid in the latest file to make last lookups efficient		
         String latest_pid_file_name = guidToLatestFilePath(guid);	// TODO Al - need file locking!!!!!!!!!!!!!!!!!!!!!!
@@ -266,9 +266,9 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         if (! latest_pid_file.isFile()) {		// if it doesn't exist create it
         	
             try {
-                if (! latest_pid_file.createNewFile()) Error.hardError("cannot create latest PID file: " + latest_pid_file_name);
+                if (! latest_pid_file.createNewFile()) ErrorHandling.hardError("cannot create latest PID file: " + latest_pid_file_name);
             }
-            catch (IOException e1) { Error.hardExceptionError("cannot create latest PID file: " + latest_pid_file_name, e1); }
+            catch (IOException e1) { ErrorHandling.hardExceptionError(e1, "cannot create latest PID file: " + latest_pid_file_name, e1); }
         }
         
         // now add the PID data to the latest pid file
@@ -278,7 +278,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
             fw.write("\n");
             fw.close();
         }
-        catch (IOException e) { Error.exceptionError("cannot create FileWriter for latest PID file: " + latest_pid_file, e); }
+        catch (IOException e) { ErrorHandling.exceptionError(e, "cannot create FileWriter for latest PID file: " + latest_pid_file, e); }
     }
     
     ////////////////////////////////////////// IRootedGUIDStore methods ///////////////////////////////////////
@@ -304,14 +304,14 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
 //        File theFile = new File( store_directory_path + File.separator + ROOTFILENAME );
 //        
 //        if( theFile.isFile() ) {		// if the root file exists already
-//            Error.hardError( "Root file for store already exists" );
+//            ErrorHandling.hardError( "Root file for store already exists" );
 //        }
 //        try {
 //            if( ! theFile.createNewFile() ) {
-//                Error.hardError( "Cannot create root file: " + ROOTFILENAME );
+//                ErrorHandling.hardError( "Cannot create root file: " + ROOTFILENAME );
 //            }
 //        } catch (IOException e) {
-//            Error.exceptionError( "Cannot create root file: " + ROOTFILENAME, e );
+//            ErrorHandling.exceptionError( "Cannot create root file: " + ROOTFILENAME, e );
 //        }
 //        
 //        try {
@@ -320,7 +320,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
 //            fw.write( "\n" );
 //            fw.close();
 //        } catch (Exception e1) {
-//            Error.exceptionError( "Cannot write to root file: " + ROOTFILENAME, e1 );
+//            ErrorHandling.exceptionError( "Cannot write to root file: " + ROOTFILENAME, e1 );
 //        }
 //    }
     
@@ -336,19 +336,19 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         File directory = new File( directory_path );
         
         if( ! directory.exists() ) {
-            if (!directory.mkdirs() ) Error.hardError( "Cannot create directory: " + directory_path );
+            if (!directory.mkdirs() ) ErrorHandling.hardError( "Cannot create directory: " + directory_path );
         }
         
         if( ! directory.exists() ) {
-            Error.hardError( "Cannot open directory: " + directory_path );
+            ErrorHandling.hardError( "Cannot open directory: " + directory_path );
         }
         
         if( ! directory.isDirectory() ) {
-            Error.hardError( "Not a directory: " + directory_path );
+            ErrorHandling.hardError( "Not a directory: " + directory_path );
         }
         
         if( ! directory.canRead() ) {
-            Error.hardError( "Cannot read directory: " + directory_path );
+            ErrorHandling.hardError( "Cannot read directory: " + directory_path );
         }
     }
     
@@ -368,7 +368,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
 /*    private String guidToEarliestFilePath(IGUID guid) {        
         Iterator iter = getAllPIDs(guid); // although we want only the first
         if( ! iter.hasNext() ) {
-            Error.error( "Cannot get guid-pid mapping for: " + guid );
+            ErrorHandling.error( "Cannot get guid-pid mapping for: " + guid );
             return "";
         }
         IPID pid = (IPID) iter.next();
@@ -387,16 +387,16 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
         
         public PIDIterator(File theFile) {
         
-	        if( ! theFile.exists() )    Error.hardError( "Cannot open file: " + theFile.getName() );
-	        if( theFile.isDirectory() ) Error.hardError( "GUID file is a directory: " + theFile.getName() );
-	        if( ! theFile.isFile() )    Error.hardError( "GUID file is not a standard file: " + theFile.getName() );
+	        if( ! theFile.exists() )    ErrorHandling.hardError( "Cannot open file: " + theFile.getName() );
+	        if( theFile.isDirectory() ) ErrorHandling.hardError( "GUID file is a directory: " + theFile.getName() );
+	        if( ! theFile.isFile() )    ErrorHandling.hardError( "GUID file is not a standard file: " + theFile.getName() );
         
             try {
                 InputStream stream = new FileInputStream(theFile);
                 br = new BufferedReader( new InputStreamReader( stream ) );
                 nextString();
             }
-            catch (FileNotFoundException e) { Error.hardExceptionError( "Cannot open file: " + theFile.getName(), e ); }
+            catch (FileNotFoundException e) { ErrorHandling.hardExceptionError(e, "Cannot open file: " + theFile.getName(), e ); }
         }
 
         public void remove() {
@@ -416,7 +416,7 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
             try {
                 return new KeyImpl( thisOne  );
             } catch (GUIDGenerationException e) {
-                Error.exceptionError( "GUIDGenerationException in PIDIterator", e );
+                ErrorHandling.exceptionError(e, "GUIDGenerationException in PIDIterator", e );
                 throw new NoSuchElementException();
             }
         }
@@ -433,20 +433,20 @@ public class FileStore implements IGUIDStore, IManagedGUIDStore {
                 }
                 next = br.readLine();
             } catch (IOException e) {
-                Error.exceptionError( "Reading nextString in iterator over file", e );
+                ErrorHandling.exceptionError(e, "Reading nextString in iterator over file", e );
             }
         }
     }
 
     public void removeGUID(IGUID guid) {
-    	Error.hardError("unimplemented method");
+    	ErrorHandling.hardError("unimplemented method");
     }
 
     public void removeVersion(IGUID gid, IPID versionPID) {
-    	Error.hardError("unimplemented method");
+    	ErrorHandling.hardError("unimplemented method");
     }
 
     public void removePID(IPID pid) {
-    	Error.hardError("unimplemented method");
+    	ErrorHandling.hardError("unimplemented method");
     }
 }

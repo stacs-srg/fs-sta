@@ -9,7 +9,7 @@ import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IStatefulObject;
 import uk.ac.standrews.cs.fs.store.impl.localfilebased.ByteData;
-import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 /**
  * Simple persistent object implementation.
@@ -61,7 +61,7 @@ public abstract class StatefulObject extends PersistentBase implements IStateful
      * @return the object's state
      */
     public IData reify() {
-        if (state == null) Error.error("Attempt to reify stateless object");
+        if (state == null) ErrorHandling.error("Attempt to reify stateless object");
         return state;
     }
 

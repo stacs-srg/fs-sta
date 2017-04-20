@@ -19,8 +19,8 @@ import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
 import uk.ac.standrews.cs.fs.store.interfaces.INameGUIDMap;
 import uk.ac.standrews.cs.fs.util.Attributes;
 import uk.ac.standrews.cs.impl.keys.KeyImpl;
-import uk.ac.standrews.cs.utils.Diagnostic;
-import uk.ac.standrews.cs.utils.Error;
+import uk.ac.standrews.cs.utilities.archive.Diagnostic;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -215,13 +215,13 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
 
         public void remove() {
             if( currentKey == null ) {
-                Error.error( "Attempt to remove a non-element from a Directory (remove called before next)");
+                ErrorHandling.error( "Attempt to remove a non-element from a Directory (remove called before next)");
                 return;
             }
             try {
                 delete(currentKey);
             } catch (Exception e) {
-                Error.exceptionError("Error removing attempting to remove element: " + currentKey, e);
+                ErrorHandling.exceptionError(e, "Error removing attempting to remove element: " + currentKey, e);
             }
         }
     }
@@ -244,7 +244,7 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
            	return new ByteData( output_stream.toByteArray() );
     	}
     	catch (IOException e) {
-    	    Error.exceptionError( "Cannot stream directory state into output stream", e);
+    	    ErrorHandling.exceptionError(e, "Cannot stream directory state into output stream", e);
     	    return null;
     	}
      }
@@ -263,7 +263,7 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
         
 //        IPersistentObject persistent_object = new StatefulObject(data, pid, guid);
 //        
-//        if (persistent_object == null) Error.hardError( "Cannot obtain directory from store" );
+//        if (persistent_object == null) ErrorHandling.hardError( "Cannot obtain directory from store" );
 
         try {
 //            IData state = persistent_object.reify();
@@ -271,7 +271,7 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
         	
         	load(data.getInputStream());
         }
-        catch (IOException e) { Error.exceptionError("Cannot load directory state: " + pid, e); }        
+        catch (IOException e) { ErrorHandling.exceptionError(e, "Cannot load directory state: " + pid, e); }
     }
 
     /**
@@ -325,7 +325,7 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
             persist();
         }
         catch (Exception e) {
-            Error.exceptionError( "Error synchronising state of Name_GUID_MAP", e );
+            ErrorHandling.exceptionError(e, "Error synchronising state of Name_GUID_MAP", e );
         }  	
     }
 
@@ -335,14 +335,14 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
     private IGUID extractGUID( String text ) {
         StringTokenizer st = new StringTokenizer(text, SEPARATOR);
         if (st.countTokens() != 2) {
-            Error.hardError( "internal inconsistency in mapping, found " + st.countTokens() + " expected 2" );
+            ErrorHandling.hardError( "internal inconsistency in mapping, found " + st.countTokens() + " expected 2" );
             // not reached
             return null;
         } else {
             try {
                 return new KeyImpl(st.nextToken()); // first token is the GUID
             } catch (GUIDGenerationException e) {
-                Error.hardError( "Could not extract GUID");
+                ErrorHandling.hardError( "Could not extract GUID");
                 return null;
             }
         }
@@ -354,7 +354,7 @@ public class NameGUIDMap extends Properties implements INameGUIDMap {
     private String extractAttributes( String text ) {
         StringTokenizer st = new StringTokenizer(text, SEPARATOR);
         if (st.countTokens() != 2) {
-            Error.hardError( "internal inconsistency in mapping, found " + st.countTokens() + " expected 2" );
+            ErrorHandling.hardError( "internal inconsistency in mapping, found " + st.countTokens() + " expected 2" );
             // not reached
             return null;
         } else {    

@@ -5,8 +5,7 @@ package uk.ac.standrews.cs.fs.util;
 
 
 import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributes;
-import uk.ac.standrews.cs.utils.Error;
-import uk.ac.standrews.cs.utils.StringUtil;
+import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 import java.util.Iterator;
 import java.util.StringTokenizer;
@@ -39,7 +38,7 @@ public class Attributes implements IAttributes {
      * @see uk.ac.stand.dcs.asa.filesystem.interfaces.Attributes#contains(java.lang.String)
      */
     public boolean contains(String attribute) {
-        return StringUtil.contains( attString, attribute );
+        return attString.contains(attribute);
     }
     
     public String get( String name ) {
@@ -70,7 +69,7 @@ public class Attributes implements IAttributes {
          * @see java.util.Iterator#remove()
          */
         public void remove() { 
-        	Error.hardError("unimplemented method");
+        	ErrorHandling.hardError("unimplemented method");
         }
 
         /* (non-Javadoc)
