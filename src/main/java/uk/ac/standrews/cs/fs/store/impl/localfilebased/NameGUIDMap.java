@@ -3,10 +3,6 @@
  */
 package uk.ac.standrews.cs.fs.store.impl.localfilebased;
 
-import uk.ac.standrews.cs.GUIDFactory;
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
-import uk.ac.standrews.cs.exceptions.GUIDGenerationException;
 import uk.ac.standrews.cs.fs.exceptions.BindingAbsentException;
 import uk.ac.standrews.cs.fs.exceptions.BindingPresentException;
 import uk.ac.standrews.cs.fs.exceptions.PersistenceException;
@@ -18,7 +14,11 @@ import uk.ac.standrews.cs.fs.store.general.NameGUIDBinding;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
 import uk.ac.standrews.cs.fs.store.interfaces.INameGUIDMap;
 import uk.ac.standrews.cs.fs.util.Attributes;
-import uk.ac.standrews.cs.impl.keys.KeyImpl;
+import uk.ac.standrews.cs.guid.GUIDFactory;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
+import uk.ac.standrews.cs.guid.exceptions.GUIDGenerationException;
+import uk.ac.standrews.cs.guid.impl.keys.KeyImpl;
 import uk.ac.standrews.cs.utilities.archive.Diagnostic;
 import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 

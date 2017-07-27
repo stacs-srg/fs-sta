@@ -1,6 +1,6 @@
 package uk.ac.standrews.cs.fs.persistence.interfaces;
 
-import uk.ac.standrews.cs.IPID;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * Abstraction of PID generation policy.

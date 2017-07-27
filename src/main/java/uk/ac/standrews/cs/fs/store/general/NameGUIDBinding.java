@@ -3,8 +3,8 @@
  */
 package uk.ac.standrews.cs.fs.store.general;
 
-import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.fs.store.interfaces.INameGUIDBinding;
+import uk.ac.standrews.cs.guid.IGUID;
 
 /**
  * Implements a binding between a logical name and a GUID (identifying an object).

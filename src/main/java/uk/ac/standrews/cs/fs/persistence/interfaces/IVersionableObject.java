@@ -1,7 +1,7 @@
 package uk.ac.standrews.cs.fs.persistence.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.fs.interfaces.IFileSystemObject;
+import uk.ac.standrews.cs.guid.IGUID;
 
 import java.util.Collection;
 

@@ -3,13 +3,13 @@
  */
 package uk.ac.standrews.cs.fs.persistence.impl;
 
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.exceptions.AccessFailureException;
 import uk.ac.standrews.cs.fs.interfaces.IDirectory;
 import uk.ac.standrews.cs.fs.interfaces.IFileSystemObject;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributes;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * Adds support for attributes to the state held by StatefulObject

@@ -4,15 +4,15 @@
 package uk.ac.standrews.cs.fs.store;
 
 import org.junit.Test;
-import uk.ac.standrews.cs.GUIDFactory;
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
-import uk.ac.standrews.cs.PIDFactory;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.store.exceptions.StoreGetException;
 import uk.ac.standrews.cs.fs.store.exceptions.StorePutException;
 import uk.ac.standrews.cs.fs.store.factories.LocalFileBasedStoreFactory;
 import uk.ac.standrews.cs.fs.store.interfaces.IGUIDStore;
+import uk.ac.standrews.cs.guid.GUIDFactory;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
+import uk.ac.standrews.cs.guid.PIDFactory;
 
 import java.util.Iterator;
 

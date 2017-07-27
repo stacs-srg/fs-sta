@@ -3,8 +3,8 @@
  */
 package uk.ac.standrews.cs.fs.store.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * Version of GUIDPIDMap that allows GUIDs and PIDs to be removed.

@@ -3,11 +3,11 @@
  */
 package uk.ac.standrews.cs.fs.persistence.impl;
 
-import uk.ac.standrews.cs.GUIDFactory;
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.exceptions.PersistenceException;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IPersistentObject;
+import uk.ac.standrews.cs.guid.GUIDFactory;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * Skeleton implementation of IPersistentObject.

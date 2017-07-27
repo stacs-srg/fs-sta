@@ -3,11 +3,11 @@
  */
 package uk.ac.standrews.cs.fs.store.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.fs.exceptions.BindingAbsentException;
 import uk.ac.standrews.cs.fs.exceptions.BindingPresentException;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IAttributes;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IPersistentObject;
+import uk.ac.standrews.cs.guid.IGUID;
 
 import java.util.Iterator;
 

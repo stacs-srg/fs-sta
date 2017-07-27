@@ -3,11 +3,11 @@
  */
 package uk.ac.standrews.cs.fs.persistence.impl;
 
-import uk.ac.standrews.cs.IPID;
-import uk.ac.standrews.cs.exceptions.GUIDGenerationException;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IPIDGenerator;
-import uk.ac.standrews.cs.impl.SHAKeyFactory;
+import uk.ac.standrews.cs.guid.IPID;
+import uk.ac.standrews.cs.guid.exceptions.GUIDGenerationException;
+import uk.ac.standrews.cs.guid.impl.SHAKeyFactory;
 import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 public class PIDGenerator implements IPIDGenerator {

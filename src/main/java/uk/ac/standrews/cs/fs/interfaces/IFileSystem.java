@@ -3,9 +3,9 @@
  */
 package uk.ac.standrews.cs.fs.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
 import uk.ac.standrews.cs.fs.exceptions.*;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
+import uk.ac.standrews.cs.guid.IGUID;
 
 import java.net.URI;
 

@@ -3,7 +3,7 @@
  */
 package uk.ac.standrews.cs.fs.store.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
+import uk.ac.standrews.cs.guid.IGUID;
 
 /**
  * Represents a binding between a logical name and a GUID (identifying an object). A directory (IName_GUID_Map) contains

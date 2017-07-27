@@ -3,9 +3,9 @@
  */
 package uk.ac.standrews.cs.fs.persistence.interfaces;
 
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.exceptions.PersistenceException;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * A potentially persistent object.

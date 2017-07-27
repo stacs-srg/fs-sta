@@ -3,10 +3,10 @@
  */
 package uk.ac.standrews.cs.fs.store.interfaces;
 
-import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.store.exceptions.StoreGetException;
 import uk.ac.standrews.cs.fs.store.exceptions.StorePutException;
+import uk.ac.standrews.cs.guid.IPID;
 
 /**
  * A store that maps PIDs to data. The mapping is append-only; once a mapping

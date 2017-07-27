@@ -4,11 +4,11 @@
 package uk.ac.standrews.cs.fs.persistence.impl;
 
 import org.apache.commons.lang3.ArrayUtils;
-import uk.ac.standrews.cs.IGUID;
-import uk.ac.standrews.cs.IPID;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IData;
 import uk.ac.standrews.cs.fs.persistence.interfaces.IStatefulObject;
 import uk.ac.standrews.cs.fs.store.impl.localfilebased.ByteData;
+import uk.ac.standrews.cs.guid.IGUID;
+import uk.ac.standrews.cs.guid.IPID;
 import uk.ac.standrews.cs.utilities.archive.ErrorHandling;
 
 /**
